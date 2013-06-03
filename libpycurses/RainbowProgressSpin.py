@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
 import curses
 
 from base import ProgressSpin
@@ -8,6 +11,8 @@ __date__ = "20130505"
 
 class RainbowProgressSpin(ProgressSpin):
     """
+    レインボーおおおおおおスピィィィン！
+    ブラボオオオオヽ(`Д´)ﾉ
 
     >>>if curses.has_color():
     >>>    spin = RainbowProgressSpin(parentWindow=stdscr)
