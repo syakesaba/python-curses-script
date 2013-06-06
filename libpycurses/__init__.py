@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-import RainbowProgressSpin
+from RainbowProgressSpin import RainbowProgressSpin
+from RainbowProgressRotate import RainbowProgressRotate
+
 import base # Package
 
-__all__ = ["RainbowProgressSpin"]
+__all__ = ["RainbowProgressSpin", "RainbowProgressRotate", "base"]

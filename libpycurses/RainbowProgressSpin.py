@@ -43,7 +43,7 @@ class RainbowProgressSpin(ProgressSpin):
         curses.start_color()
         curses.use_default_colors()
         for i in range(7):
-            curses.init_pair(i,i,self.bgColor)
+            curses.init_pair(i,i,self.bgColor) # includes white
         while 1:
             for i in range(7):
                 yield curses.color_pair(i)

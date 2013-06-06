@@ -17,7 +17,7 @@ class ProgressSpin(Thread):
 
     """
 
-    def __init__(self, parentWindow, y=None, x=None, delay=0.1, attr=None):
+    def __init__(self, parentWindow,  y=None, x=None, chars=["|","/","-","\\"], delay=0.1, attr=None):
         """Initialize Spin
 
         This method only initialize the object.
@@ -44,25 +44,25 @@ class ProgressSpin(Thread):
             self.y = y
         self.delay = delay
         self.attr = attr
+        self.chars=chars
 
     def run(self):
         self.running = True
         for ch in self.nextChar():
             if self.attr:
-                self.parentWindow.addch(self.y, self.x, ch, attr=self.attr) # Draw
+                self.parentWindow.addch(self.y, self.x, ch, self.attr) # Draw
             else:
                 self.parentWindow.addch(self.y, self.x, ch) # Draw
             time.sleep( self.delay )
             self.parentWindow.refresh()
 
+    def _infiniteChar(self):
+        while True:
+            for ch in self.chars:
+                yield(ord(ch))
+
     def nextChar(self):
-        def infiniteChar():
-            while True:
-                yield ord("\\")
-                yield ord("|")
-                yield ord("/")
-                yield ord("-")
-        for ch in infiniteChar():
+        for ch in self._infiniteChar():
             if self.running:
                 yield ch
             else:
@@ -71,6 +71,7 @@ class ProgressSpin(Thread):
     def stop(self):
         self.running = False
         self.parentWindow.delch(self.y, self.x) # Clean Char
+        self.parentWindow.refresh()
         self.join()
 
 if __name__=="__main__":
@@ -83,6 +84,7 @@ if __name__=="__main__":
             parentWindow=win,
             y=win.getmaxyx()[0]/2,
             x=win.getmaxyx()[1]/2,
+            chars=["|","/","-","\\"],
             delay=0.2,
             attr=None,
             )
@@ -92,6 +94,7 @@ if __name__=="__main__":
                 win.addstr(i,i,"%s" % str(i))
                 time.sleep(1)
             spin.stop()
+            time.sleep(1)
             return 1
         except (KeyboardInterrupt, SystemExit):
             spin.stop()

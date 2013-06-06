@@ -3,6 +3,7 @@
 
 from Panel import Panel
 from ProgressSpin import ProgressSpin
+from ProgressRotate import ProgressRotate
 
-__all__ = ["Panel","ProgressSpin"]
+__all__ = ["Panel", "ProgressSpin", "ProgressRotate"]
 
