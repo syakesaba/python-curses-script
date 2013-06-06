@@ -70,7 +70,7 @@ class ProgressSpin(Thread):
 
     def stop(self):
         self.running = False
-        self.parentWindow.delch(self.y, self.x) # Clean Char
+        self.parentWindow.addch(self.y, self.x, ord(" ")) # Clean Char
         self.parentWindow.refresh()
         self.join()
 

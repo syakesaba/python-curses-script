@@ -60,7 +60,7 @@ class ProgressRotate(ProgressSpin):
             f(y,x,ch)
             self.parentWindow.refresh()
             time.sleep(self.delay)
-            self.parentWindow.delch(y, x)
+            self.parentWindow.addch(y, x, ord(" "))
 
 if __name__=="__main__":
     import curses

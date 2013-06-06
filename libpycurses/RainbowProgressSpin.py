@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 import curses
+import time
 
 from base import ProgressSpin
 
