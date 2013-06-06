@@ -5,15 +5,14 @@
 #from RainbowProgressRotate import RainbowProgressRotate
 #import base # Package
 
-__all__ = ["RainbowProgressSpin", "RainbowProgressRotate", "base"]
+__all__ = ["RainbowProgressSpin", "RainbowProgressRotate"]
 
 import curses
 import time
 
-from base import ProgressSpin
-from base import ProgressRotate
+import base
 
-class RainbowProgressSpin(ProgressSpin):
+class RainbowProgressSpin(base.ProgressSpin):
     """
     レインボーおおおおおおスピィィィン！
     ブラボオオオオヽ(`Д´)ﾉ
@@ -40,7 +39,7 @@ class RainbowProgressSpin(ProgressSpin):
             bgColor: A color of background of the spin. defaults null.
 
         """
-        ProgressSpin.__init__(self,parentWindow=parentWindow, y=y, x=x, delay=delay)
+        base.ProgressSpin.__init__(self,parentWindow=parentWindow, y=y, x=x, delay=delay)
         self.bgColor = bgColor
 
     def rainbow_colors(self):
@@ -61,7 +60,7 @@ class RainbowProgressSpin(ProgressSpin):
             time.sleep( self.delay )
             self.parentWindow.refresh()
 
-class RainbowProgressRotate(ProgressRotate):
+class RainbowProgressRotate(base.ProgressRotate):
     """
     レインボオオオオオオウヽ(`Д´)ﾉ
     ウォォォォン！
@@ -91,7 +90,7 @@ class RainbowProgressRotate(ProgressRotate):
             self.fgColor = fsColor
         else:
             self.fgColor = -1
-        ProgressRotate.__init__(self, parentWindow, y=y, x=x, chars=chars, delay=delay, attr=curses.A_BOLD)
+        base.ProgressRotate.__init__(self, parentWindow, y=y, x=x, chars=chars, delay=delay, attr=curses.A_BOLD)
 
     def rainbow_colors(self):
         curses.start_color()

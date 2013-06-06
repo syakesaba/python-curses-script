@@ -40,7 +40,7 @@ class ProgressSpin(threading.Thread):
             attr: A attribute of the spin.
 
         """
-        Thread.__init__(self)
+        threading.Thread.__init__(self)
         self.parentWindow = parentWindow
 
         if x is None:
